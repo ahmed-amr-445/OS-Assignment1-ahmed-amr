@@ -18,6 +18,7 @@ Through this assignment, I have been able to understand the workings of Java thr
 **Your Answer:**
 
 The hardest part of this assignment was correctly keeping track of the waiting time for Feature 3. It was difficult to manage the timestamps using the System.currentTimeMillis() method as the processes were constantly yielding the CPU and returning to the ready queue after a certain time quantum. I had to make sure that the logic for the waiting time only included the waiting time for the processes and did not include their execution time. Another challenge was making sure the Context Switch Counter was implemented correctly so that it only increased the count when a new process started execution. This required a lot of digging through the loop structure to understand the flow of the simulation.
+
 ---
 
 ## Question 3: How did you overcome the challenges you faced?
@@ -25,6 +26,7 @@ The hardest part of this assignment was correctly keeping track of the waiting t
 **Your Answer:**
 
 To address this problem, I used a systematic debugging method by printing logs to the terminal to observe the states of variables such as remainingTime and totalWaitTime. In addition, I studied the documentation of the starter code and the README.md file to understand the relationship between the Process class and the SchedulerSimulation loop. In the waiting time part of the code, I utilized the lastReadyTime field to find the time difference every time a process was retrieved from the queue and scheduled to run. Furthermore, I utilized professional tools such as the built-in Git feature of Visual Studio Code to track my commits on each feature before moving to the next one. This systematic approach helped me detect logic errors and ensured that the context switch counter was being incremented at the right time during the scheduling simulation.
+
 ---
 
 ## Question 4: How can you apply multithreading concepts in real-world applications?
