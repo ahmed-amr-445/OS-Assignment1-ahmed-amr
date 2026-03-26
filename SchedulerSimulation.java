@@ -151,6 +151,9 @@ class Process implements Runnable {
     public int getRemainingTime() {
         return remainingTime;
     }
+    public int getPriority() {
+        return priority;
+    }
 
     // Check if the process has finished (i.e., no remaining time)
     public boolean isFinished() {
@@ -305,13 +308,14 @@ public class SchedulerSimulation {
                           Colors.RESET + "\n");
         System.out.println(Colors.BOLD + Colors.YELLOW + "Total context switches: " + contextSwitches + Colors.RESET); // print the total number of context switches     
         
-        // display summary table
+      // display summary table
         System.out.println(Colors.BOLD + "Process Name | Burst Time | Waiting Time" + Colors.RESET);
         System.out.println("----------------------------------------------");
-        for (Process p : processMap.values()) {
-            System.out.println(String.format("%-12s | %-10d | %-12d", 
-                               p.getName(), p.getBurstTime(), p.getTotalWaitTime()));
-        }
+
+        new java.util.HashSet<>(processMap.values()).forEach(p -> {
+            System.out.printf("%-13s | %-10d | %-12d%n", 
+                              p.getName(), p.getBurstTime(), p.getTotalWaitTime());
+        });
     }
     
     // Method to add a process to the queue and map, while printing a "ready" message
@@ -329,8 +333,9 @@ public class SchedulerSimulation {
         
         // Print a message indicating the process has entered the ready queue
         System.out.println(Colors.BLUE + "  ➕ " + Colors.BOLD + Colors.CYAN + process.getName() + 
-                          Colors.RESET + Colors.BLUE + " added to ready queue" + Colors.RESET + 
-                          " │ Burst time: " + Colors.YELLOW + process.getBurstTime() + "ms" + 
-                          Colors.RESET);
+                  Colors.RESET + Colors.WHITE + " (Priority: " + process.getPriority() + ")" + 
+                  Colors.RESET + Colors.BLUE + " added to ready queue" + Colors.RESET + 
+                  " │ Burst time: " + Colors.YELLOW + process.getBurstTime() + "ms" + 
+                  Colors.RESET);
     }
 }
